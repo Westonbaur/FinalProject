@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-padding">
+      {{ name }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 text-center *ngIf="loadnotes().length === 0">
+    No Notes Available on the List.
+  
+    <h1 text-center>Your Reminders</h1>
+</h3>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let note of loadnotes(); let &quot;i-index&quot;">
+      <ion-item>
+        <ion-card class="expand"   color="secondary">
+          <ion-card-title text-center>{{ note.title }}</ion-card-title>
+          <ion-card-subtitle text-center>
+            {{ note.date }}
+          </ion-card-subtitle>
+
+          <ion-card-content text-center>
+            {{ note.content }}
+          </ion-card-content>
+
+
+          <ion-footer text-center>
+          <button
+            (click)="editnote(note, i)"
+            color="--ion-color-primary"
+            icon-start
+          >
+            <ion-icon name="create"></ion-icon>
+          </button>
+
+          <button
+  
+            (click)="sharenote(note, i)"
+            color="light"
+            icon-start
+          >
+            <ion-icon name="share"></ion-icon>
+          </button>
+
+          <button
+
+            (click)="removenote(note, i)"
+            color="--ion-color-secondary"
+            icon-start
+          >
+            <ion-icon name="trash"></ion-icon>
+          </button>
+
+          </ion-footer>
+
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button mini (click)="add()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+</ion-content>
